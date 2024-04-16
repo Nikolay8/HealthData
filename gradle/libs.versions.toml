@@ -1,0 +1,69 @@
+[versions]
+agp = "8.3.2"
+appcompatVer = "1.6.1"
+chuckerVer = "4.0.0"
+circularprogressbar = "3.1.0"
+connectClient = "1.1.0-alpha07"
+constraintlayoutVer = "2.1.4"
+daggerVer = "2.47"
+databindingRuntimVer = "8.3.0"
+fragmentKtxVer = "1.6.2"
+graphview = "4.2.2"
+healthConnect = "1.1.0-alpha02"
+kotlin = "1.9.0"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+lifecycleExtensionsVer = "2.2.0"
+lifecycleRuntimeKtx = "2.7.0"
+activityCompose = "1.8.2"
+composeBom = "2023.08.00"
+materialVer = "1.11.0"
+moshiVer = "1.15.0"
+retrofitVer = "2.9.0"
+symbolProcessingApiVer = "1.9.21-1.0.15"
+
+[libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVer" }
+androidx-connect-client = { module = "androidx.health.connect:connect-client", version.ref = "healthConnect" }
+androidx-connect-client-v110alpha07 = { module = "androidx.health.connect:connect-client", version.ref = "connectClient" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVer" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-databinding-runtime = { module = "androidx.databinding:databinding-runtime", version.ref = "databindingRuntimVer" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtxVer" }
+androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensionsVer" }
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycleRuntimeKtx" }
+circularprogressbar = { module = "com.mikhaellopez:circularprogressbar", version.ref = "circularprogressbar" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVer" }
+converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofitVer" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "daggerVer" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerVer" }
+graphview = { module = "com.jjoe64:graphview", version.ref = "graphview" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+library = { module = "com.github.chuckerteam.chucker:library", version.ref = "chuckerVer" }
+library-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chuckerVer" }
+material = { module = "com.google.android.material:material", version.ref = "materialVer" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshiVer" }
+moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshiVer" }
+moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiVer" }
+moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiVer" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVer" }
+symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "symbolProcessingApiVer" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+

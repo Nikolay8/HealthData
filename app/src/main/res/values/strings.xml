@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">HealthData</string>
+    <string name="phone_settings">phone_settings</string>
+    <string name="we_need_access_to_your_health_amp_activity_data"><![CDATA[We need access to your Health & Activity data]]></string>
+    <string name="description">To provide you with a personalized and rewarding health experience, we request your permission to access your health and activity data. \n\nEnable access to your health data now.</string>
+    <string name="go_to_permissions">Go to Permissions</string>
+    <string name="something_went_wrong">Something went wrong, please try again</string>
+    <string name="install_app_title">Need to install Health Connect</string>
+    <string name="install_app_message">Health connect not installed on your device, would you like to install it?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="importing_health_data">Importing Health Data</string>
+    <string name="continue_string">Continue</string>
+    <string name="health_insights">Health Insights</string>
+    <string name="health_insights_back">&lt; Health Insights</string>
+    <string name="my_steps">My steps</string>
+    <string name="steps_day">steps/day</string>
+    <string name="distance">Distance</string>
+    <string name="distance_day">km/day</string>
+    <string name="time_in_bed">Time in Bed</string>
+    <string name="daily_sleep_time">daily sleep time</string>
+    <string name="calories_burned">Calories Burned</string>
+    <string name="kcal_day">kcal/day</string>
+    <string name="total_activity">Total Activity</string>
+    <string name="minutes_day">minutes/day</string>
+    <string name="empty_value">N/A</string>
+    <string name="average">Average</string>
+
+</resources>
