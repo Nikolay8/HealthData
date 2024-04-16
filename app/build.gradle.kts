@@ -78,23 +78,7 @@ dependencies {
     // CircularProgressBar
     implementation(libs.circularprogressbar)
 
-    //Chuck HTTP inspector
-    debugImplementation(libs.library)
-    releaseImplementation(libs.library.no.op)
-
     //Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
-
-    //Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-
-    //Moshi
-    implementation(libs.converter.moshi)
-    implementation(libs.moshi)
-    implementation(libs.moshi.kotlin)
-    implementation(libs.moshi.adapters)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.moshi.kotlin.codegen)
 }
