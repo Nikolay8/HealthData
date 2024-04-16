@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.time.Duration
 import java.time.Instant
+import java.time.Month
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -28,7 +29,7 @@ class DataRepositoryImpl @Inject constructor(
 
     private var _responseModelLiveData = MutableLiveData<ResponseModel>()
 
-    private var timeInBedMapLiveData = MutableLiveData<HashMap<Instant, Long>>()
+    private var timeInBedMapLiveData = MutableLiveData<MutableMap<Month, Long>>()
 
     // Create default empty model
     private var responseModel = ResponseModel(
@@ -48,7 +49,7 @@ class DataRepositoryImpl @Inject constructor(
         this._responseModelLiveData = responseModelLiveData
     }
 
-    override fun getTimeInBedByMonthData(): HashMap<Instant, Long>? {
+    override fun getTimeInBedByMonthData(): MutableMap<Month, Long>? {
         return timeInBedMapLiveData.value
     }
 
@@ -109,7 +110,7 @@ class DataRepositoryImpl @Inject constructor(
             var stepsCount = 0L // Total steps count
             var distanceCount = 0.0 // Total distance count
             var sleepSessionCount = 0L // Total sleep session duration
-            val sleepByMonthMap = HashMap<Instant, Long>() // Stores sleep duration by month
+            val sleepByMonthMap = mutableMapOf<Month, Long>() // Stores sleep duration by month
             var caloriesBurnedCount = 0.0 // Total calories burned count
             var activityMinutes = 0L // Total activity duration
 
@@ -126,8 +127,6 @@ class DataRepositoryImpl @Inject constructor(
                     }
 
                     is SleepSessionRecord -> {
-                        val instantArray = arrayListOf<Instant>()
-
                         val startSessionInstant = record.startTime
                         val endSessionInstant = record.endTime
                         val duration = Duration.between(startSessionInstant, endSessionInstant)
@@ -135,7 +134,15 @@ class DataRepositoryImpl @Inject constructor(
 
                         sleepSessionCount += minutes
                         instantArray.add(record.startTime)
-                        sleepByMonthMap[record.startTime] = minutes
+
+                        val date = record.startTime.atZone(ZoneId.systemDefault()).toLocalDate()
+                        val yearMonth = date.month
+
+                        if (sleepByMonthMap.containsKey(yearMonth)) {
+                            sleepByMonthMap[yearMonth]?.plus(minutes)
+                        } else {
+                            sleepByMonthMap[yearMonth] = minutes
+                        }
                     }
 
                     is TotalCaloriesBurnedRecord -> {

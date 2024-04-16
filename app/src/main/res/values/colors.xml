@@ -15,5 +15,6 @@
     <color name="grey_card_view_bg">#f5f5f5</color>
     <color name="grey_card_view_text">#4c5460</color>
     <color name="blue_card_view_text">#0e87b9</color>
+    <color name="graph_line_color">#9ed2ec</color>
 
 </resources>

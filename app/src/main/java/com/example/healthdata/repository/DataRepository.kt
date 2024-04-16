@@ -3,6 +3,7 @@ package com.example.healthdata.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.healthdata.model.ResponseModel
 import java.time.Instant
+import java.time.Month
 
 /**
  * Interface representing a data repository.
@@ -24,7 +25,7 @@ interface DataRepository {
      * The key is the Instant representing the start of the month, and the value is the total time in bed in minutes.
      * Returns null if no data is available.
      */
-    fun getTimeInBedByMonthData(): HashMap<Instant, Long>?
+    fun getTimeInBedByMonthData(): MutableMap<Month, Long>?
 
     /**
      * Imports all available data and updates the LiveData with the state of the importation process.

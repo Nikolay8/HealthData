@@ -5,6 +5,7 @@ import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,6 +13,9 @@ import androidx.fragment.app.viewModels
 import com.example.healthdata.R
 import com.example.healthdata.databinding.FragmentGraphBinding
 import com.example.healthdata.util.factory
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 
 
 class GraphFragment : Fragment() {
@@ -54,7 +58,6 @@ class GraphFragment : Fragment() {
 
         // Get time in bed from repository
         viewModel.getTimeInBedByMonthData()
-        viewModel.convertToMonthMap()
     }
 
     private fun initViews() {
@@ -63,19 +66,6 @@ class GraphFragment : Fragment() {
         } else {
             binding.timeInBedTextView.text = getString(R.string.empty_value)
         }
-
-//        val graph = binding.graph
-//        val series: LineGraphSeries<DataPoint> = LineGraphSeries<DataPoint>(
-//            arrayOf<DataPoint>(
-//                DataPoint(0.0, 1.0),
-//                DataPoint(1.0, 5.0),
-//                DataPoint(2.0, 3.0),
-//                DataPoint(3.0, 2.0),
-//                DataPoint(4.0, 6.0)
-//            )
-//        )
-//        graph.addSeries(series)
-
     }
 
     private fun setupObservers() {
@@ -84,8 +74,37 @@ class GraphFragment : Fragment() {
         }
 
         // Observe time sleep by month map
-        viewModel.monthMapLiveData.observe(viewLifecycleOwner) {
-            // TODO imp graph by this data
+        viewModel.monthMapLiveData.observe(viewLifecycleOwner) { responseMap ->
+            val entryArray = ArrayList<Entry>()
+
+            responseMap.forEach {
+                val monthFloat = it.key.value.toFloat()
+                val valueFloat = (it.value / 60).toFloat()
+
+                val entry = Entry(monthFloat, valueFloat)
+                entryArray.add(entry)
+            }
+
+            // MOCK DATA FOR GRAPH // TODO Fix graph
+            entryArray.add(Entry(1.0F, 8.0F))
+            entryArray.add(Entry(2.0F, 8.0F))
+            entryArray.add(Entry(3.0F, 8.5F))
+            entryArray.add(Entry(4.0F, 7.0F))
+            entryArray.add(Entry(5.0F, 6.0F))
+            entryArray.add(Entry(6.0F, 9.0F))
+
+            val dataSet = LineDataSet(entryArray, getString(R.string.time_in_bed))
+            dataSet.setColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.graph_line_color
+                )
+            )
+
+            val lineData = LineData(dataSet)
+            binding.chart.setData(lineData)
+            binding.chart.invalidate() // refresh
+
         }
     }
 }
