@@ -62,7 +62,11 @@ class HealthInsightsFragment : Fragment() {
     }
 
     private fun initViews() {
-        val stepsPerDay = (responseModel?.stepCounts ?: 0) / (responseModel?.stepDays ?: 0)
+        val stepsPerDay = if ((responseModel?.stepDays ?: 0) != 0) {
+            (responseModel?.stepCounts ?: 0) / (responseModel?.stepDays!!)
+        } else {
+            0
+        }
 
         val formatter = NumberFormat.getNumberInstance(Locale.US)
         val formattedStepsPerDay = formatter.format(stepsPerDay)
@@ -79,13 +83,17 @@ class HealthInsightsFragment : Fragment() {
             0.0
         }
 
-        val decimalFormat = DecimalFormat("#.#")
-        val formattedDistancePerDay = decimalFormat.format(distancePerDay)
-
-        if (formattedDistancePerDay.isNotEmpty()) {
-            binding.distanceTextView.text = formattedDistancePerDay
-        } else {
+        if (distancePerDay.isNaN()) {
             binding.distanceTextView.text = getString(R.string.empty_value)
+        } else {
+            val decimalFormat = DecimalFormat("#.#")
+            val formattedDistancePerDay = decimalFormat.format(distancePerDay)
+
+            if (formattedDistancePerDay.isNotEmpty()) {
+                binding.distanceTextView.text = formattedDistancePerDay
+            } else {
+                binding.distanceTextView.text = getString(R.string.empty_value)
+            }
         }
 
         // Time in bed
@@ -116,8 +124,11 @@ class HealthInsightsFragment : Fragment() {
         }
 
         // Total activity
-        val totalActivityString =
-            (responseModel?.activityMinute ?: 1L) / (responseModel?.activityDays ?: 1)
+        val totalActivityString = if ((responseModel?.activityDays ?: 0) != 0) {
+            (responseModel?.activityMinute ?: 1L) / (responseModel?.activityDays!!)
+        } else {
+            1L
+        }
 
         if (totalActivityString > 0) {
             binding.totalActivityTextView.text = totalActivityString.toString()
